@@ -55,6 +55,31 @@ public class MyGraph<V> {
 
         return false;
     }
+    // Method to search if vertex present in Graph
+    public boolean search(Vertex<V> start, Vertex<V> target) {
+        Set<Vertex<V>> visited = new HashSet<>();
+        Queue<Vertex<V>> queue = new LinkedList<>();
+
+        visited.add(start);
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            Vertex<V> currentVertex = queue.poll();
+            if (currentVertex.equals(target)) {
+                return true;
+            }
+
+            Map<Vertex<V>, Double> adjVertices = currentVertex.getAdjVertices();
+            for (Vertex<V> neighbor : adjVertices.keySet()) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        return false;
+    }
     // Method to perform Dijkstra's shortest path algorithm starting from the specified start vertex
     public Map<Vertex, Double>  DijkstraSearch(Vertex start) {
         Map<Vertex, Double> distances = new HashMap<>();

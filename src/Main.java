@@ -52,5 +52,10 @@ public class Main {
 
         System.out.println(myGraph.search(v1, 10));
 
+        System.out.println("Search method showcase: " +
+                "v1 -> target: v2");
+
+        System.out.println(myGraph.search(v1, v2));
+
     }
 }
